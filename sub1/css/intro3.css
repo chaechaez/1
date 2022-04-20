@@ -38,10 +38,10 @@
         .textboxcontents{width: 100%; height: 85%;  position: relative;}
         .content1{width: 100%; height: 100%;  position: absolute; display: flex; flex-wrap: wrap; align-content: center;}
         .content11{width: 100%; height: 60%; }
-        .content11 span{font-family: 'fontR'; font-size: 2.3vmin; width: 100%; color: white;}
+        .content11 span{font-family: 'fontR'; font-size: 2vmin; width: 100%; color: white;}
         .content2{width: 100%; height: 100%;  position: absolute; display: flex; flex-wrap: wrap; align-content: center; left:500px;}
         .content21{width: 100%; height: 80%;}
-        .content21 span{font-family: 'fontR'; font-size: 2.3vmin; width: 100%; color: white;}
+        .content21 span{font-family: 'fontR'; font-size: 2vmin; width: 100%; color: white;}
         
         .introbox23{width: 100%; height: 20%;  display: flex; flex-wrap: wrap; justify-content: center; align-content: center;}
         .graph{width: 100%; height: 90%; }

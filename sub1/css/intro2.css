@@ -25,7 +25,7 @@
         .bold{font-weight: bolder;}
         .introbox22{width: 100%; height: 45%; display: flex; flex-wrap: wrap;}
         .introbox22pic{width: 50%; height: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-content: center;}
-        .picture{width: 470px; height: 520px; border-radius: 50%;   background-image: url("../img/이채림증명사진.jpg"); background-position: center;
+        .picture{width: 470px; height: 520px; border-radius: 50%;   background-image: url("../img/me.jpg"); background-position: center;
         background-repeat: no-repeat; background-size: cover;}
         .introbox22tex{width: 50%; height: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-content: center;}
         .textbox{width: 90%; height: 90%; }
@@ -39,10 +39,10 @@
         .textboxcontents{width: 100%; height: 85%;  position: relative;}
         .content1{width: 100%; height: 100%;  position: absolute; display: flex; flex-wrap: wrap; align-content: center;}
         .content11{width: 100%; height: 60%; }
-        .content11 span{font-family: 'fontR'; font-size: 2.5vmin; width: 100%; color: white; line-height:50px;}
+        .content11 span{font-family: 'fontR'; font-size: 2vmin; width: 100%; color: white; line-height:50px;}
         .content2{width: 100%; height: 100%;  position: absolute; display: flex; flex-wrap: wrap; align-content: center;}
         .content21{width: 100%; height: 80%; }
-        .content21 span{font-family: 'fontR'; font-size: 2.5vmin; width: 100%; color: white; line-height:40px;}
+        .content21 span{font-family: 'fontR'; font-size: 2vmin; width: 100%; color: white; line-height:40px;}
         
         .introbox23{width: 100%; height: 30%;  display: flex; flex-wrap: wrap; justify-content: center; align-content: center;}
         .graph{width: 90%; height: 90%; }
