@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skills</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
+    <script src="./js/skill.js"></script>
+    <link rel="stylesheet" href="./css/skillmain.css">
+    <link rel="stylesheet" href="./css/skill1.css">
+    <link rel="stylesheet" href="./css/skill2.css">
+    <link rel="stylesheet" href="./css/skill3.css">
+    <script>
+
+        $(function(){
+         $(".nav").hide();
+         $(".menu-trigger").click(function(){
+             $(".nav").animate({width:"toggle"},500);
+         });
+     });
+
+   </script>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <div class="skill">
+                
+                    <div class="nav">
+                        <div class="navinbox">
+                            <div class="inbox1">
+                                <span>Skills</span>
+                            </div>
+                            <ul class="inbox2">
+                                <li onclick="location.href='../index.html'">Main</li>
+                                <li onclick="location.href='../sub1/introduce.html'">Introduce</li>
+                                <li onclick="location.href='../sub3/portfolio.html'">Coding</li>
+                                <li onclick="location.href='../sub4/contact.html'">Contact</li>
+                            </ul>
+                        </div>
+                    </div>
+    
+                    <div class="skillbox">
+                        <div class="skillbox1">
+                            <div class="skilltext">
+                                <span>My Skill</span>
+                            </div>
+                        </div>
+                        <div class="skillbox2">
+                            <div class="skill_1">
+                                <div class="skill_11">
+                                    <div class="pie-chart pie-chart1">
+                                        <span class="center count1"></span>
+                                    </div>
+                                </div>
+                                <div class="skill_12">
+                                    <span>HTML</span>
+                                </div>
+                            </div>
+                            <div class="skill_2">
+                                <div class="skill_11">
+                                    <div class="pie-chart pie-chart2">
+                                        <span class="center count2"></span>
+                                    </div>
+                                </div>
+                                <div class="skill_12">
+                                    <span>CSS</span>
+                                </div>
+                            </div>
+                            <div class="skill_3">
+                                <div class="skill_11">
+                                    <div class="pie-chart pie-chart3">
+                                        <span class="center count3">∞</span>
+                                    </div>
+                                </div>
+                                <div class="skill_12">
+                                    <span>JAVASCRIPT</span>
+                                </div>
+                            </div>
+                            <div class="skill_4">
+                                <div class="skill_11">
+                                    <div class="pie-chart pie-chart4">
+                                        <span class="center count4">∞</span>
+                                    </div>
+                                </div>
+                                <div class="skill_12">
+                                    <span>jQuery</span>
+                                </div>
+                            </div>
+                            <div class="skill_5">
+                                <div class="skill_11">
+                                    <div class="pie-chart pie-chart5">
+                                        <span class="center count5"></span>
+                                    </div>
+                                </div>
+                                <div class="skill_12">
+                                    <span>AJAX/JSON</span>
+                                </div>
+                            </div>
+                            <div class="skill_6">
+                                <div class="skill_11">
+                                    <div class="pie-chart pie-chart6">
+                                        <span class="center count6"></span>
+                                    </div>
+                                </div>
+                                <div class="skill_12">
+                                    <span>포토샵/일러</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <a class="menu-trigger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </a>
+    
+                
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+*{margin: 0; padding: 0; overflow-x: hidden; font-family: 'Bungee Shade', cursive;}
+.wrap{width: 100vw; height: 100vh; background-color: black; }
+.skill{width: 100vw; height: 100vh; background-color: black; position: relative;}
+
+.menu-trigger,.menu-trigger span {display: inline-block;transition: all .4s; cursor: pointer;}
+.menu-trigger {position: fixed; top:10px; left: 10px; width: 40px;height: 30px; z-index: 9999;}
+.menu-trigger span {position: absolute; width: 100%;height: 4px;background-color: #f0f0f0;border-radius: 4px; z-index: 70;}
+.menu-trigger span:nth-of-type(1) {top: 0;}
+.menu-trigger span:nth-of-type(2) {top: 13px;}
+.menu-trigger span:nth-of-type(3) {bottom: 0;}
+.menu-trigger.active-1 span:nth-of-type(1) {transform: translateY(13px) rotate(-45deg);}
+.menu-trigger.active-1 span:nth-of-type(2) {opacity: 0;}
+.menu-trigger.active-1 span:nth-of-type(3) {transform: translateY(-13px) rotate(45deg);}
+
+
+@keyframes rainbow{     
+    0% { color: #ff2a2a; }
+    15% { color: #ff7a2a; }
+    30% { color: #ffc52a; }
+    45% { color: #43ff2a; }
+    60% { color: #2a89ff; }
+    75% { color: #202082; }
+    90% { color: #6b2aff; } 
+    100% { color: #e82aff; }
+        }
