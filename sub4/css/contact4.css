@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+@media (max-width:599px){
+    .wrap{width: 100vw; height: 200vh; background-color: black; overflow: hidden;}
+    .nav{width: 100vw; height: 100vh; background-color: black; position: fixed; z-index: 9998; text-align: center;}
+    .navinbox{width: 100%; height: 100%;}
+    .inbox1{width: 100%; height: 20%;  display: flex; flex-wrap: wrap; justify-content: center;  }
+    .inbox1 span{overflow: hidden; width: 100%; height: 100%; font-size: 10vmin; color: lightyellow;  animation-duration: 3s; animation-name: rainbow; animation-iteration-count: infinite;}
+    .inbox2{width: 100%; height: 80%;  display: flex; flex-wrap: wrap; justify-content: center; align-content: space-around;}
+    .inbox2 li{width: 100%; font-size: 6vmin; color: white; text-align: center; cursor: pointer; }
+    .inbox2 li:nth-of-type(1):hover{ color: #ff2a2a; transition: 2s;}
+    .inbox2 li:nth-of-type(2):hover{ color: #ffc52a; transition: 2s;}
+    .inbox2 li:nth-of-type(3):hover{ color: #2a89ff; transition: 2s;}
+    .inbox2 li:nth-of-type(4):hover{ color: #6b2aff; transition: 2s;}
+
+    .contactbox{width: 80%; height: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; }
+        .contactbox1{width: 100%; height: 15%;  text-align: center; overflow: hidden;}
+        .contactbox1 span{width: 100%; height: 100%;animation-duration: 3s; animation-name: rainbow; animation-iteration-count: infinite; font-size: 10vmin; line-height: 150px; }
+        .contactbox2{width: 100%; height: 30%;  position: relative;}
+        
+        .rollingbox{position: absolute; width: 100%; height: 20%; overflow: hidden; left:35px;}
+        .rollingbox .fronttext span{ font-size: 6vmin; color: white; letter-spacing: 1px;}
+        .rollingbox .backtext span{ font-size: 5vmin; color: yellow;  line-height: 120px; letter-spacing: 3px;}
+        .rollingbox:hover .fronttext{transform: rotateX(-180deg); transition: 1s;}
+        .rollingbox:hover .backtext{transform: rotateX(0deg); transition: 1s;}
+        .fronttext{transform: rotateX(0deg); backface-visibility: hidden; position: absolute;} /* backface-visibility 반응형 수정 */
+        .backtext {transform: rotateX(180deg); transform-style: preserve-3d; backface-visibility: hidden; position: absolute;}
+        
+        
+        .contactbox3{width: 100%; height: 30%;}
+        .contactbutton1{width: 100%; height: 35%; display: flex; flex-wrap: wrap; justify-content: center; align-content: center;  }
+        .contactbutton1 span{font-size: 6vmin; cursor: pointer; border: 10px solid white; border-radius: 50px; width: 80%; height: 50%; text-align: center; line-height: 90px; overflow: hidden; color: white;}
+        .contactbutton1:hover span{border: 10px solid #ff2a2a; color: #ff2a2a; transition: 1s;}
+        .contactbutton2{width: 100%; height: 35%; display: flex; flex-wrap: wrap; justify-content: center; align-content: center;}
+        .contactbutton2 span{font-size: 6vmin; cursor: pointer; border: 10px solid white; border-radius: 50px; width: 80%; height: 50%; text-align: center; line-height: 90px; overflow: hidden; animation-delay: 0.5s; color: white;}
+        .contactbutton2:hover span{border: 10px solid #ffc52a; color: #ffc52a; transition: 1s;}
+        
+        .contactbox4{width: 100%; height: 50%; position: relative;}
+        .contactbox4>.rollingbox { position:absolute; left:75px;}
+        
+        .contactbutton3{width: 100%; height: 50%;  display: flex; flex-wrap: wrap; justify-content: center; align-content: center;}
+        .contactbutton3 span{font-size: 6vmin; cursor: pointer; border: 10px solid white; border-radius: 50px; width: 80%; height: 50%; text-align: center; line-height: 90px; overflow: hidden; animation-delay: 1s; color: white;}
+        .contactbutton3:hover span{border: 10px solid #2a89ff; color: #2a89ff; transition: 1s;}
+        .contactbutton4{width: 100%; height: 50%; display: flex; flex-wrap: wrap; justify-content: center; align-content: center;}
+        .contactbutton4 span{font-size: 6vmin; cursor: pointer; border: 10px solid white; border-radius: 50px; width: 80%; height: 50%; text-align: center; line-height: 90px; overflow: hidden; animation-delay: 1.5s; color: white;}
+        .contactbutton4:hover span{border: 10px solid #e82aff; color: #e82aff; transition: 1s;}
+        .contactbox5{width: 100%; height: 40%; position:absolute; top:150px;}
+
+        .hidden1{display:none}
+        .hidden2{display: none;}
+}
