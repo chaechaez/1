@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+@media (max-width:599px){
+    .container1{width: 100vw; height: 100vh;}
+    #magic{position: absolute;width: 100%;height: 100vh;display: block;top: 0;left: 0;z-index: 9997;}
+    .nav{width: 100vw; height: 100vh; background-color: black; position: absolute; z-index: 9998; text-align: center;}
+    .navinbox{width: 100%; height: 100%;}
+    .inbox1{width: 100%; height: 20%;  display: flex; flex-wrap: wrap; justify-content: center; }
+    .inbox1 span{width: 100%; height: 100%; font-size: 10vmin; color: lightyellow;  animation-duration: 3s; animation-name: rainbow; animation-iteration-count: infinite;}
+    .inbox2{width: 100%; height: 80%;  display: flex; flex-wrap: wrap; justify-content: center; align-content: space-around;}
+    .inbox2 li{width: 100%; font-size: 8vmin; color: white; text-align: center; cursor: pointer; }
+    .inbox2 li:nth-of-type(1):hover{ color: #ff2a2a; transition: 2s;}
+    .inbox2 li:nth-of-type(2):hover{ color: #ffc52a; transition: 2s;}
+    .inbox2 li:nth-of-type(3):hover{ color: #2a89ff; transition: 2s;}
+    .inbox2 li:nth-of-type(4):hover{ color: #6b2aff; transition: 2s;}
+
+}
