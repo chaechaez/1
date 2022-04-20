@@ -1,0 +1,1177 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>교보문구sub</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/sub1.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
+    <script src="./js/common.js"></script>
+  
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
+    <script>
+            $.ajax({
+                method: "GET",
+                url: "https://dapi.kakao.com/v3/search/book?target=title",
+                data: { query: ('재미') },
+                headers: { Authorization: "KakaoAK 990fde994483119ca87dc4ba94a7616b" }
+            })
+                .done(function (msg) {
+
+                    var dat = msg.documents[0].datetime;
+                    var dat2 = dat.substring(0, 10);
+                    var con = msg.documents[0].contents;
+                    var con2 = con.substring(0, 100);
+
+
+                    $(".main_photo").append("<img src='" + msg.documents[0].thumbnail + "'/>");
+                    $(".book_title").append("<h2>" + msg.documents[0].title + "</h2>");
+                    $(".book_information").append("<p>" + "도서 출판날짜 : " + "<span>" + dat2 + "</span>" + "</p>");
+                    $(".book_information").append("<p>" + "도서 출판사 : " + "<span>" + msg.documents[0].publisher + "</span>" + "</p>");
+                    $(".book_information").append("<p>" + "도서 저자 : " + "<span>" + msg.documents[0].authors + "</span>" + "</p>");
+                    $(".book_information").append("<p>" + "도서 번역자 리스트 : " + "<span>" + msg.documents[0].translators + "</span>" + "</p>");
+                    $(".book_information").append("<p>" + "도서 판매 상태 정보 : " + "<span>" + msg.documents[0].status + "</span>" + "</p>");
+                    $(".book_information").append("<h4>" + msg.documents[0].sale_price + "원" + "</h4>");
+                    $(".book_information").append("<span>" + msg.documents[0].price + "원" + "</span>");
+                    $(".book_subtotal").append("<p>" + "도서 출판사 : " + con2 + "</p>");
+                    // 슬라이드사진
+                    $('.slate_photo li').append("<img src='" + msg.documents[0].thumbnail + "'/>");
+
+                    var divs = document.getElementsByClassName('Related_products-box');
+
+                    for (var i = 0; i < divs.length; i++) {
+
+                        var str = msg.documents[i].title;
+                        var str2 = str.substring(0, 30);
+
+                        $(".Related_products-box").eq(i).append('<div>' + "<h6>" + msg.documents[i].authors + "</h6>" +'</div>');
+                        $(".Related_products-box").eq(i).append('<div>'+ "<h3>" + str2 + "</h3>" + '</a>'+'</div>');
+                        $(".Related_products-box").eq(i).append('<div>'+ "<img src='" + msg.documents[i].thumbnail + "'/>" +'</div>');
+                        $(".Related_products-box").eq(i).append('<div>'+"<span>" + msg.documents[0].sale_price + "원" + "</span>"+'<span>'+msg.documents[0].price+'</span>'+"<span>" + '20%' + "</span>"+'</div>');
+
+                    }
+
+                });
+
+
+
+
+
+
+
+
+        // 옆으로 넘기기
+        $(function(){
+            $('.slate_photo button:nth-of-type(1)').click(function(){
+                $('.slate_photo li:last-of-type').appendTo('.slate_photo ul');
+                $('.slate_photo ul').css({'marginLeft':'-25%'});
+                $('.slate_photo ul').animate({'marginLeft':'0px'});
+            });
+            $('.slate_photo button:nth-of-type(2)').click(function(){
+                $('.slate_photo ul').animate({'marginLeft':'-25%'},function(){
+                    $('.slate_photo li:first-of-type').appendTo('.slate_photo ul');
+                    $('.slate_photo ul').css({'marginLeft':'0px'});
+                });
+            });
+        });
+
+
+
+
+        // 관련제품
+        $(function(){
+            $('.Related_products-ul-button button:nth-of-type(1)').click(function(){
+                $('.Related_products-ul ul').animate({'marginLeft':'0px'});
+                $('.Related_products-ul-button button:nth-of-type(1)').addClass('click');
+                $('.Related_products-ul-button button:nth-of-type(2)').removeClass('click');
+            });
+            $('.Related_products-ul-button button:nth-of-type(2)').click(function(){
+                $('.Related_products-ul ul').animate({'marginLeft':'-25%'});
+                $('.Related_products-ul-button button:nth-of-type(2)').addClass('click');
+                $('.Related_products-ul-button button:nth-of-type(1)').removeClass('click');
+            });
+        });
+
+        // 상세보기 버튼
+        $(function(){
+            $('.maininformation_Contents-button div').click(function(){
+                $('.maininformation_Contents').toggleClass('overflow');
+                $('.maininformation_Contents-button div').toggleClass('overflow');
+                $('.maininformation_Contents-button h4:first').toggleClass('h4');
+                $('.maininformation_Contents-button h4:last').toggleClass('h4_2');
+            });
+        });
+
+    </script>
+</head>
+<body>
+
+    <!-- 해더  /////////////////// -->
+    <header>
+        <div id="sub">
+            <div class="sub_left">
+                <a href="sub.html">매장안내</a>
+                <a href="sub.html">회원해택</a>
+                <a href="sub.html">Prestige Lounge</a>
+            </div>
+            <div class="sub_right">
+                <a href="sub.html">로그인</a>
+
+                <a href="sub.html">회원가입</a>
+                <a href="sub.html">출석체크</a>
+                <a href="sub.html">고객센터</a>
+                <a href="sub.html">주문배송</a>
+                <a href="sub.html"><img src="img/common/장바구니.png" alt=""> 장바구니</a>
+            </div>
+        </div>
+       
+        <div id="main">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="Search">
+                <input type="text" placeholder="검색해보세요...">
+                <button>검색</button>
+            </div>
+            <div class="event">
+                <div class="event_box">
+                    <ul>
+                        <li>
+                            <a href="sub.html" class="event1">
+                                <div></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="sub.html" class="event2">
+                                <div></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="sub.html" class="event3">
+                                <div></div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="arrow">
+                        <span><img src="img/lefticon.png" alt="left"></span>
+                        <span><img src="img/righticon.png" alt="right"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <div id="bigmenu">
+        <div id="menu">
+        
+            <div class="sub_menu">
+                <img src="img/menuicon.png" alt="menu">
+                <div class="sub_menu2">
+                <p>카테고리 메뉴</p>
+                <img src="img/arrowright.png" alt="bottom">
+            </div>
+                <div class="sub_menu_main">
+                    <div class="sub_menu_main_title">
+                        <p>국내도서</p>
+                        <img src="img/arrowright.png" alt="right">
+                        <div class="sub_menu_sub">
+                            <div class="aaaa">
+                                <div class="sub_menu_sub_left sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- 국내도서</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">소설</a>
+                                            <a href="sub.html">시/에시아</a>
+                                            <a href="sub.html">경제/경영</a>
+                                            <a href="sub.html">자기 계발</a>
+                                            <a href="sub.html">인문</a>
+                                            <a href="sub.html">역사/문학</a>
+                                            <a href="sub.html">종교</a>
+                                            <a href="sub.html">정치/사회</a>
+                                            <a href="sub.html">예술/대중문화</a>
+                                            <a href="sub.html">과학</a>
+                                            <a href="sub.html">기술/공학</a>
+                                            <a href="sub.html">컴퓨터/IT</a>
+                                        </div>
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">유아(0~7세)</a>
+                                            <a href="sub.html">어린이(초등)</a>
+                                            <a href="sub.html">어린이전집</a>
+                                            <a href="sub.html">어린이ELT</a>
+                                            <a href="sub.html">청소년</a>
+                                            <a href="sub.html">초등참고서</a>
+                                            <a href="sub.html">중/고등참고서</a>
+                                            <a href="sub.html">대학교재</a>
+                                            <a href="sub.html">방송통신대교재</a>
+                                            <a href="sub.html">취업/수험서</a>
+                                            <a href="sub.html">외국어</a>
+                                        </div>
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">가정/육아</a>
+                                            <a href="sub.html">건강</a>
+                                            <a href="sub.html">여행</a>
+                                            <a href="sub.html">요리</a>
+                                            <a href="sub.html">취미/실용/스포츠</a>
+                                            <a href="sub.html">잡지</a>
+                                            <a href="sub.html">만화</a>
+                                            <a href="sub.html">한국소개도서</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sub_menu_sub_right sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- 스페셜 코너</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">오늘의 책</a>
+                                            <a href="sub.html">이달의 책</a>
+                                            <a href="sub.html">문장수집</a>
+                                            <a href="sub.html">정가인하</a>
+                                            <a href="sub.html">특가도서</a>
+                                            <a href="sub.html">추천도서</a>
+                                            <a href="sub.html">이럴 떈 이런 책</a>
+                                            <a href="sub.html">키위맘</a>
+                                            <a href="sub.html">작가&작품</a>
+                                            <a href="sub.html">월페이퍼</a>
+                                            <a href="sub.html">분철서비스</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="sub_menu_main_title">
+                        <p>외국도서</p>
+                        <img src="img/arrowright.png" alt="right">
+                        <div class="sub_menu_sub">
+                            <div class="aaaa">
+                                <div class="sub_menu_sub_left sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html"><strong>서양도서</strong></a>
+                                            <a href="sub.html">문학</a>
+                                            <a href="sub.html">인문/사회</a>
+                                            <a href="sub.html">유아/아동/청소년</a>
+                                            <a href="sub.html">건제/경영</a>
+                                            <a href="sub.html">과학/기술</a>
+                                            <a href="sub.html">취미/실용/여행</a>
+                                            <a href="sub.html">ELT/어학/사전</a>
+                                            <a href="sub.html">교재</a>
+                                            <a href="sub.html">생활/요리/건강</a>
+                                            <a href="sub.html">예술/건축</a>
+                                        </div>
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html"><strong>어린이ELT</strong></a>
+                                            <a href="sub.html">노부영</a>
+                                            <a href="sub.html">알파벳/파닉스</a>
+                                            <a href="sub.html">코스북</a>
+                                            <a href="sub.html">리더스/챔터북</a>
+                                            <a href="sub.html">학습교재</a>
+                                            <a href="sub.html">기타학습교재</a>
+                                            <a href="sub.html">미국교과서</a>
+                                            <a href="sub.html">사전/백과사전</a>
+                                        </div>
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html"><strong>일본도서</strong></a>
+                                            <a href="sub.html">잡지</a>
+                                            <a href="sub.html">실용성/예술</a>
+                                            <a href="sub.html">만화/애니</a>
+                                            <a href="sub.html">문학</a>
+                                            <a href="sub.html">문고</a>
+                                            <a href="sub.html">라이트노벨</a>
+                                            <a href="sub.html">어학/학습</a>
+                                            <a href="sub.html">엔터테인먼트</a>
+                                            <a href="sub.html">아동</a>
+                                            <a href="sub.html">인문/사회</a>
+                                            <a href="sub.html">자연/기술과학</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sub_menu_sub_right sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>스페셜 코너</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">베스트셀러</a>
+                                            <a href="sub.html">신상품</a>
+                                            <a href="sub.html">일본신간잡지</a>
+                                            <a href="sub.html">일본잡지 정기구독</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub_menu_main_title">
+                        <p>eBook</p>
+                        <img src="img/arrowright.png" alt="right">
+                        <div class="sub_menu_sub">
+                            <div class="aaaa">
+                                <div class="sub_menu_sub_left sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- eBook</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">소설</a>
+                                            <a href="sub.html">경제/경영</a>
+                                            <a href="sub.html">자기계발</a>
+                                            <a href="sub.html">시/에세이</a>
+                                            <a href="sub.html">인문</a>
+                                            <a href="sub.html">국어/외국어</a>
+                                            <a href="sub.html">역사/풍속/신화</a>
+                                            <a href="sub.html">사회/정치/법</a>
+                                            <a href="sub.html">가정/생활/요리</a>
+                                            <a href="sub.html">여행/취미</a>
+                                            <a href="sub.html">건장/의학</a>
+                                            <a href="sub.html">종교/역학</a>
+                                        </div>
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">장르소설</a>
+                                            <a href="sub.html">외국도서</a>
+                                            <a href="sub.html">코믹스</a>
+                                            <a href="sub.html">아동</a>
+                                            <a href="sub.html">유아</a>
+                                            <a href="sub.html">예술/대중문화</a>
+                                            <a href="sub.html">교재/수험서</a>
+                                            <a href="sub.html">청소년교양</a>
+                                            <a href="sub.html">자연과학/공학</a>
+                                            <a href="sub.html">컴퓨터/인터넷</a>
+                                            <a href="sub.html">매거진</a>
+                                            <a href="sub.html">북모닝</a>
+                                        </div>
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">베스트</a>
+                                            <a href="sub.html">신간</a>
+                                            <a href="sub.html">무료</a>
+                                            <a href="sub.html">추천</a>
+                                            <a href="sub.html">대여</a>
+                                            <a href="sub.html">이벤트</a>
+                                            <a href="sub.html">쿠폰</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sub_menu_sub_right sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- 오디오북</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">소설</a>
+                                            <a href="sub.html">시/에세이</a>
+                                            <a href="sub.html">경제/경영</a>
+                                            <a href="sub.html">자기계발</a>
+                                            <a href="sub.html">인문/사회/역사</a>
+                                            <a href="sub.html">아동/청소년</a>
+                                            <a href="sub.html">어학</a>
+                                            <a href="sub.html">가정/생활/요리</a>
+                                            <a href="sub.html">건강/취미</a>
+                                            <a href="sub.html">기타</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub_menu_main_title">
+                        <p>장르 - 코믹스</p>
+                        <img src="img/arrowright.png" alt="right">
+                        <div class="sub_menu_sub">
+                            <div class="aaaa">
+                                <div class="sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- 장르</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">로맨스</a>
+                                            <a href="sub.html">판타지</a>
+                                            <a href="sub.html">무협</a>
+                                            <a href="sub.html">라이트노벨</a>
+                                            <a href="sub.html">BL</a>
+                                            <a href="sub.html">이벤트</a>
+                                            <a href="sub.html">쿠폰</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- 코믹스</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">연재</a>
+                                            <a href="sub.html">고화질만화</a>
+                                            <a href="sub.html">무료만화</a>
+                                            <a href="sub.html">교양만화</a>
+                                            <a href="sub.html">순정만화</a>
+                                            <a href="sub.html">학원만화</a>
+                                            <a href="sub.html">드라마</a>
+                                            <a href="sub.html">성인만화</a>
+                                            <a href="sub.html">BL만화</a>
+                                            <a href="sub.html">이벤트</a>
+                                            <a href="sub.html">쿠폰</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- 웹소설,톡소다</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">썸타면톡</a>
+                                            <a href="sub.html">웹소설</a>
+                                            <a href="sub.html">자유연재</a>
+                                            <a href="sub.html">로판</a>
+                                            <a href="sub.html">로맨스</a>
+                                            <a href="sub.html">BL</a>
+                                            <a href="sub.html">판타지</a>
+                                            <a href="sub.html">무협</a>
+                                            <a href="sub.html">추리/문화</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub_menu_main_title">
+                        <p>sam</p>
+                        <img src="img/arrowright.png" alt="right">
+                        <div class="sub_menu_sub">
+                            <div class="aaaa">
+                                <div class="sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- sam</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">sam베이직</a>
+                                            <a href="sub.html">sam무제한</a>
+                                            <a href="sub.html">베스트</a>
+                                            <a href="sub.html">신간</a>
+                                            <a href="sub.html">추천</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- sam 이용안내</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">sam베이직 이용안내</a>
+                                            <a href="sub.html">sam무제한 이용안내</a>
+                                            <a href="sub.html">sam베이직이용권 구매</a>
+                                            <a href="sub.html">sam무제한이용권 구매</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub_menu_main_title">
+                        <p>기프트</p>
+                        <img src="img/arrowright.png" alt="right">
+                        <div class="sub_menu_sub">
+                            <div class="aaaa">
+                                <div class="sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- 기프트</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">필기구</a>
+                                            <a href="sub.html">오피스</a>
+                                            <a href="sub.html">리빙/생활가전</a>
+                                            <a href="sub.html">키친/푸드</a>
+                                            <a href="sub.html">가전/수납</a>
+                                            <a href="sub.html">뷰티/헬스</a>
+                                            <a href="sub.html">패션잡화</a>
+                                            <a href="sub.html">여행/자동차</a>
+                                            <a href="sub.html">취미/펫</a>
+                                            <a href="sub.html">유아동</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- 디지털</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">USB/메모리/외장하드</a>
+                                            <a href="sub.html">USB선풍기,소형가전</a>
+                                            <a href="sub.html">에플케이스/보호필림</a>
+                                            <a href="sub.html">스마트 주변기기</a>
+                                            <a href="sub.html">블루투스/헤드셋/이어폰</a>
+                                        </div>
+                                    </div>
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- 디자인문구</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">다이어리/스케즐러</a>
+                                            <a href="sub.html">비즈니스플래너/노트</a>
+                                            <a href="sub.html">캘린더/만년</a>
+                                            <a href="sub.html">필기구</a>
+                                            <a href="sub.html">필통/파우치</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub_menu_main_title">
+                        <p>음반 - DVD</p>
+                        <img src="img/arrowright.png" alt="right">
+                        <div class="sub_menu_sub">
+                            <div class="aaaa">
+                                <div class="sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- 음반</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">가요</a>
+                                            <a href="sub.html">클래스</a>
+                                            <a href="sub.html">팝</a>
+                                            <a href="sub.html">탁</a>
+                                            <a href="sub.html">재즈</a>
+                                            <a href="sub.html">O.S.T/뮤지컬</a>
+                                            <a href="sub.html">일본음악</a>
+                                            <a href="sub.html">유아/아동</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- DVD</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">블루레이</a>
+                                            <a href="sub.html">드리마/로맨스</a>
+                                            <a href="sub.html">애니메이션</a>
+                                            <a href="sub.html">MUSIC BLU-RAY</a>
+                                            <a href="sub.html">DVD</a>
+                                            <a href="sub.html">드라마/로맨스</a>
+                                            <a href="sub.html">애니메이션</a>
+                                            <a href="sub.html">MUSIC DVD</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub_menu_main_title">
+                        <p>ONLY 교보문구</p>
+                        <img src="img/arrowright.png" alt="right">
+                        <div class="sub_menu_sub">
+                            <div class="aaaa">
+                                <div class="sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- 추천</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">오늘의 책</a>
+                                            <a href="sub.html">이달의 책</a>
+                                            <a href="sub.html">이럴 떈 이런 책</a>
+                                            <a href="sub.html">키위맘</a>
+                                            <a href="sub.html">추천도서</a>
+                                            <a href="sub.html">책 그리고 꽃</a>
+                                            <a href="sub.html">READ IT</a>
+                                            <a href="sub.html">스펙비교</a>
+                                            <a href="sub.html">퀄페이퍼</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub_menu_main_title">
+                        <p>중고장터</p>
+                        <img src="img/arrowright.png" alt="right">
+                        <div class="sub_menu_sub">
+                            <div class="aaaa">
+                                <div class="sub_menu_sub_box">
+                                    <div class="sub_menu_sub_box_title">
+                                        <h3>- 중고장터</h3>
+                                    </div>
+                                    <div class="sub_menu_sub_box_menu">
+                                        <div class="sub_menu_sub_box_menu_box">
+                                            <a href="sub.html">중고도서</a>
+                                            <a href="sub.html">소설</a>
+                                            <a href="sub.html">시/에세이</a>
+                                            <a href="sub.html">경제/경영</a>
+                                            <a href="sub.html">자기계발</a>
+                                            <a href="sub.html">인문</a>
+                                            <a href="sub.html">정치/사회</a>
+                                            <a href="sub.html">기술/공학</a>
+                                            <a href="sub.html">컴퓨토/IT</a>
+                                            <a href="sub.html">아동</a>
+                                            <a href="sub.html">중/고등학습</a>
+                                            <a href="sub.html">외국어</a>
+                                            <a href="sub.html">취업/수험서</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="telephone">
+                <img src="img/common/해드셋.png" alt="">
+                <p>오전 9시 ~ 오후 6시(평일)<br>
+                    <strong>1544-1900</strong>
+                </p>
+            </div>
+            <div class="main_nav">
+                <nav>
+                    <ul class="main_ul">
+              
+                        <li class="main_li">
+                            <a href="sub1.html">국내도서 <img src="img/common/아래.png" alt=""></a>
+                            <ul class="sub_ul">
+                                <li class="sub_li"><a href="sub.html">소설</a></li>
+                                <li class="sub_li"><a href="sub.html">경제/경영</a></li>
+                                <li class="sub_li"><a href="sub.html">인문</a></li>
+                                <li class="sub_li"><a href="sub.html">어린이(초등)</a></li>
+                                <li class="sub_li"><a href="sub.html">청소년</a></li>
+                            </ul>
+                        </li>
+                      
+                        <li class="main_li">
+                            <a href="sub1.html">외국도서 <img src="img/common/아래.png" alt=""></a>
+                            <ul class="sub_ul">
+                                <li class="sub_li"><a href="sub.html">서양도서</a></li>
+                                <li class="sub_li"><a href="sub.html">어린이ELT</a></li>
+                                <li class="sub_li"><a href="sub.html">일본도서</a></li>
+                                <li class="sub_li"><a href="sub.html">중국도서</a></li>
+                            </ul>
+                        </li>
+                    
+                        <li class="main_li">
+                            <a href="sub1.html">eBook <img src="img/common/아래.png" alt=""></a>
+                            <ul class="sub_ul">
+                                <li class="sub_li"><a href="sub.html">일반도서</a></li>
+                                <li class="sub_li"><a href="sub.html">로맨스/BL</a></li>
+                                <li class="sub_li"><a href="sub.html">판타지/무협</a></li>
+                                <li class="sub_li"><a href="sub.html">코믹스</a></li>
+                                <li class="sub_li"><a href="sub.html">오디오북</a></li>
+                                <li class="sub_li"><a href="sub.html">학술논문</a></li>
+                            </ul>
+                        </li>
+       
+                        <li class="main_li">
+                            <a href="sub1.html">기프트 <img src="img/common/아래.png" alt=""></a>
+                            <ul class="sub_ul">
+                                <li class="sub_li"><a href="sub.html">2022 DIARY</a></li>
+                                <li class="sub_li"><a href="sub.html">디자인문구</a></li>
+                                <li class="sub_li"><a href="sub.html">디지털</a></li>
+                                <li class="sub_li"><a href="sub.html">키친/푸드</a></li>
+                                <li class="sub_li"><a href="sub.html">오피스</a></li>
+                                <li class="sub_li"><a href="sub.html">필기구</a></li>
+                            </ul>
+                        </li>
+                       
+                        <li class="main_li">
+                            <a href="sub.html">웹소설</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    </header>
+    <span></span>
+    <div id="web">
+        <!-- 제품 -->
+        <div id="product">
+            <!-- 경로 -->
+            <div class="Route"><p>홈 > 제품상세보기</p></div>
+            <!-- 제품박스 -->
+            <div class="product_box">
+                <!-- 제품사진 -->
+                <div class="product_photo">
+                    <div class="main_photo"></div>
+                    <div class="slate_photo">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <button><img src="img/common/왼쪽.png" alt=""></button>
+                        <button><img src="img/common/오른쪽.png" alt=""></button>
+                    </div>
+                </div>
+                <!-- 간단 정보 -->
+                <div class="brief_information">
+                    <div class="book_Tags">
+                        <p>태그 : 국내도서 주간베스트 1위 | 정치/사회 주간베스트 1위</p>
+                    </div>
+                    <div class="book_title"></div>
+                    <div class="book_information"></div>
+                    <div class="book_ranking">
+                        <span class="star">
+                            <img src="img/sub1/별.png" alt="">
+                            <img src="img/sub1/별.png" alt="">
+                            <img src="img/sub1/별.png" alt="">
+                            <img src="img/sub1/별.png" alt="">
+                            <img src="img/sub1/별.png" alt="">
+                        </span>
+                        <span>(리뷰 117개)</span>
+                    </div>
+                    <div class="book_subtotal"></div>
+                    <div class="purchase">
+                        <a href="#"><span>장바구니</span></a>
+                        <a href="#"><span>바로구매</span></a>
+                    </div>
+                    <div class="sub_purchase">
+                        <a href="#"><span><img src="img/sub1/하트.png" alt="">찜 등록하기</span></a>
+                        <a href="#"><span><img src="img/sub1/책.png" alt="">출간알림신청</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 상세정보 -->
+        <div id="maininformation">
+            <div class="maininformation_button">
+                <div class="maininformation_button-box">
+                    <a href="#maininformation" class="click"><span>상세정보</span></a>
+                    <a href="#review"><span>리뷰 (117)</span></a>
+                </div>
+            </div>
+            <div class="maininformation_Contents">
+                <div class="subtotal">
+                    <h3>책소개</h3>
+                    <br>
+                    <p>
+                        멋지게 나이 들고 싶은 사람들을 위한 인생의 기술 53 『나는 죽을 때까지 재미있게 살고싶다』. 죽음의 위기를 몇 차례 넘기고 일곱 가지 병과 더불어 살아가면서도 늘 유쾌한 노학자
+                        이근후가 들려주는
+                        나이 듦의 즐거움을 오롯이 담은 책이다. 나이 드는 것도 반드시 선행 학습이 필요하다고 이야기하며 젊은이부터 중장년층까지 ‘나는 어떻게 나이 들어 갈 것인가’를 생각하며 나이 듦을 배우고
+                        익혀야 함을 강조한다.
+                        <br><br>
+                        앞만 보고 달려왔지만 지금은 나이 드는 게 두렵다는 인생 후배들에게 저자는 무작정 돈을 모으기 전에 생각해야 할 것들, ‘내 뜻대로 되는 게 하나도 없다’라는 말은 틀렸다는 것, 잘 쉬는
+                        연습을
+                        게을리 하지 말아야 한다는 것, 세대 차이의 즐거움을 마음껏 느낄 ��� 등의 인생의 지혜를 들려준다. 이야기 사이사이에 즐거운 인생을 위한 tip을 담아 풍요로운 인생을 살아갈 수
+                        있도록 도와준다.
+                        저자는 자신의 이야기를 인생 선행 학습의 자료로 활용해 어떤 모습으로 나이 들어갈 것인가를 생각해 보는 작은 불씨가 되기를 바라고 있다.
+                    </p>
+                </div>
+                <div class="author">
+                    <h3>저자</h3>
+                    <br>
+                    <p>
+                        저자 : 이근후<br>
+                        저자 이근후는 이화여자대학교 명예교수. 1950년대 고등학교 시절, 아버지가 돌아가신 뒤 집안 형편이 어려워지면서 혼자 모든 걸 해결해야 했던 젊은이가 있었다. 그는 대학 시절 4.19와
+                        5.16 반대 시위에 참가해 감옥 생활을 한 덕분에 한동안 취직이 어려워 생활이 힘들었던 적도 많았다. 취직 후에도 빚을 갚고 자식 넷을 키우느라 젊은 시절이 어떻게 지나갔는지 모를
+                        정도였다. 하지만 그는 쉽게 절망하는 법이 없었다. 몇 차례 죽음의 위기를 넘기며 살아 있는 것 그 자체가 감사하다는 사실을 깨달았기 때문이다. <br>
+                        그는 이화여자대학교 교수이자 정신과 전문의로 50년간 환자를 돌보고 학생들을 가르쳤다. 그리고 76세의 나이에 고려사이버대학 문화학과를 최고령으로 수석 졸업하면서 세간에 화제를
+                        불러일으켰다. 은퇴 후에 다시 학생이 되어 배움의 길에 들어선 그는 그저 웃으며 ‘일흔 넘어 한 공부가 가장 재미있었다’라고 말할 뿐이다. 30년 넘게 네팔 의료 봉사를 하고, 40여 년
+                        넘게 광명보육원의 아이들을 돌본 이유도 별 게 없다. 봉사를 하니까 인생이 더 즐거워졌다는 게 이유의 전부다. 그런데 사람들은 그의 몸 상태를 알고 나면 깜짝 놀란다. 그는 지금 10년
+                        전 왼쪽 눈의 시력을 완전히 잃고 당뇨, 고혈압, 통풍, 허리 디스크 등 일곱 가지 병과 함께 살아가고 있다. 걸어 다니는 종합병원이나 다름없는 셈이다. 그럼에도 그는 퇴임 후 아내와
+                        함께 사단법인 가족아카데미아를 설립하여 청소년 성 상담, 부모 교육, 노년을 위한 생애 준비 교육 등의 활동을 활발하게 펼치고 있다. <br>
+                        우리나라 최초로 폐쇄적인 정신 병동을 개방 병동으로 바꾸고, 정신 질환 치료법으로 사이코드라마를 도입했으며, 한국정신치료학회를 설립하는 등 우리나라 정신의학 발전에 공헌을 한 바가
+                        크지만, 그는 그것 또한 필요한 일이고 하고 싶어 했을 뿐 대단한 일은 아니라고 잘라 말한다. <br>
+                        또한 그는 한 여자의 남편이자 네 아이의 아버지로 살아오면서 절대 자식 인생에 간섭하는 부모는 되지 말아야지 마음먹었더랬다. 현재 그는 결혼한 자녀 부부와 네 명의 손자 손녀까지 모두 삼
+                        대 열세 명이 한집에 모여 사는 대가족을 이루고 있는데, 그 화목함의 비결은 딱 하나다. 각기 독특한 개성을 지닌 식구 전체가 행복해야 한다는 것. 그래서 시아버지로서 며느리에게 거절하는
+                        법부터 가르칠 정도로 상호 불간섭주의와 독립성 보장을 지켜오고 있다. 그랬더니 오히려 가족 간 허물없이 소통이 이루어졌다며 즐거워한다. <br>
+                        여든을 앞둔 지금도 그는 하루하루 사는 일이 재미있다고 말한다. 공부를 하고 청탁 원고를 쓰고 제자들에게 안부 메일을 보낸다. 찾아오는 이들을 반갑게 맞이하고, 그리운 이들에게 연락하길
+                        주저하지 않는다. 앞만 보며 달렸던 젊은 시절에는 몰랐던 여유로운 즐거움이다.
+                        평생을 재미있게 살려고 노력해 온 노학자가 ‘어떻게 살 것인가’를 고민하는 후배들을 위해 지금까지 지켜온 변하지 않는 삶의 원칙과 80년의 세월을 살아오며 깨달은 인생의 통찰을 이 책에
+                        담았다.
+                        <br><br>
+                        저자 : 김선경 (엮음) <br>
+                        엮은이 김선경은 대학에서 경제학을 전공하고 출판계에 입문하여 월간 『좋은생각』, 『좋은친구』, 『행복한동행』, 『문학사상』, 기업 사보 등 월간지와 단행본을 두루 만들었다. 직접 쓴
+                        책으로 20만 명 독자의 마음을 사로잡은 《서른 살엔 미처 몰랐던 것들》이 있다. 마흔 살에 접어들면서 본격적으로 ‘어떻게 나이 들어 갈 것인가’를 고민한 끝에 이근후 명예교수와 함께 이
+                        책을 펴냈다.
+        
+                    </p>
+                </div>
+        
+                <div class="Contents">
+                    <h3>목차</h3>
+                    <br>
+                    prologue 당신은 어떻게 나이 들고 싶은가
+                    <br><br>
+                    chapter 1. 나는 죽을 때까지 재미있게 살고 싶다
+                    <br><br>
+                    뭐가 그리 억울한가<br>
+                    죽음의 위기를 몇 차례 넘기며 깨달은 것들<br>
+                    왜 외롭다고 말하면서 아무것도 하지 않는가<br>
+                    ▶즐거운 인생을 위한 tip-“늙으면 죽어야지”라는 말을 입버릇처럼 하는 당신에게<br>
+                    우리 가족 삼 대 열세 명이 한 지붕 아래 사는 비결<br>
+                    나는 며느리에게 거절하는 법부터 가르쳤다<br>
+                    ▶즐거운 인생을 위한 tip-‘얘가 어렸을 때는 안 그랬는데……’라며 서운해하는 부모들에게<br>
+                    당당하게 아파라<br>
+                    일흔 넘어 시작한 공부가 제일 재미있었던 까닭<br>
+                    무모하게 사는 것이 가장 안전한 길이다<br>
+                    ▶즐거운 인생을 위한 tip-“노후엔 못 해 본 여행이나 다니며 살아야죠”라고 말하는 당신에게<br>
+                    30년 만에 만난 힐러리 경이 나에게 가르쳐 준 것<br>
+                    내가 ‘최선을 다하라’라는 말을 싫어하는 이유<br>
+                    내 마음속에는 지금도 철들지 않는 소년이 살고 있다<br>
+                    ▶즐거운 인생을 위한 tip- 평생 자유롭게 살아 본 적이 없다고 한탄하는 이들에게<br>
+                    <br><br>
+                    chapter 2. 이렇게 나이 들지 마라
+                    <br><br>
+                    나이 드는 게 두렵기만 한 사람들에게<br>
+                    ▶즐거운 인생을 위한 tip-늘 남에게 뒤처질까 봐 조바심 내는 당신에게<br>
+                    나이 들면 약해진다는 생각부터 버려라<br>
+                    자식의 인생에 절대 간섭하지 마라<br>
+                    ▶즐거운 인생을 위한 tip-“내가 자식을 어떻게 키웠는지 아냐”며 억울해하는 부모에게<br>
+                    무작정 돈을 모으기 전에 생각해야 할 것<br>
+                    ▶즐거운 인생을 위한 tip-노후 자금을 하나도 모아 놓지 않아 불안한 이들에게<br>
+                    젊은이를 가르치려 들지 마라<br>
+                    ▶즐거운 인생을 위한 tip-"옛날에 내가……"라며 자랑을 늘어놓기 바쁜 당신에게<br>
+                    오늘을 어제의 기분으로 살지 마라<br>
+                    내가 나이 듦에 대처하는 방식<br>
+                    내가 웃으면 아내도 웃고, 아내가 웃으면 나도 웃는다<br>
+                    ▶즐거운 인생을 위한 tip-배우자가 먼저 죽을까 봐 걱정되는 당신에게<br>
+                    노인의 귀가 큰 까닭<br>
+                    이제 그만 자신에게 너그러워져라<br>
+                    ▶즐거운 인생을 위한 tip-‘그때 나는 왜 그랬을까?’라며 자꾸만 후회하는 당신에게
+                    <br><br>
+                    chapter 3. 마흔 살에 알았더라면 더 좋았을 것들
+                    <br><br>
+                    ‘내 뜻대로 되는 게 하나도 없다’라는 말은 틀렸다<br>
+                    ▶즐거운 인생을 위한 tip-‘긍정’이란 말의 의미를 잘못 알고 있는 사람들에게<br>
+                    부모가 아이에게 남겨 줄 수 있는 최고의 재산<br>
+                    내가 누구인지 알게 되면 다른 사람과 경쟁할 필요가 없다<br>
+                    내가 지나온 삶을 후회하지 않는 이유<br>
+                    나이 들수록 사소한 분노를 잘 다스려야 한다<br>
+                    ▶즐거운 인생을 위한 tip-거절 당하면 화부터 나는 당신에게<br>
+                    잘 쉬는 연습을 게을리 하지 마라<br>
+                    더 늦기 전에 노년의 삶을 그려 보라<br>
+                    ▶즐거운 인생을 위한 tipt-요새 부쩍 우울하다고 말하는 이들에게<br>
+                    아직도 부모와 화해하지 못한 사람들에게 하고 싶은 말<br>
+                    직장을 그만두어야 하는 사람들에게 하고 싶은 말<br>
+                    ▶즐거운 인생을 위한 tip-은퇴 후에 나를 찾는 사람이 없으면 어쩌나 걱정하는 당신에게<br>
+                    신혼부부에게 건네는 세 가지 당부<br>
+                    ▶즐거운 인생을 위한 tip-‘여태 살아 준 내가 바보다’라며 배우자를 원망하는 사람들에게
+                    <br><br>
+                    chapter 4. 사람은 무엇으로 사는가
+                    <br><br>
+                    결혼한 지 50년이 지나서야 하는 부끄러운 고백<br>
+                    따로 또 같이 행복해지기 위해 반드시 필요한 것, 가훈<br>
+                    ▶즐거운 인생을 위한 tip-매일 똑같은 문제로 다투는 가족 때문에 지친 당신에게<br>
+                    내가 만난 사람들이 곧 나의 인생이다<br>
+                    ▶즐거운 인생을 위한 tip-말실수를 하고 후회한 적이 많은 사람들에게<br>
+                    손자 손녀를 키우면서 깨달은 것들<br>
+                    사람들에게 회갑 잔치를 권하는 이유<br>
+                    세대 차이의 즐거움을 마음껏 누려라<br>
+                    1년간은 작정하고 날마다 일기를 써 보라<br>
+                    ▶즐거운 인생을 위한 tip-인생 계획을 어떻게 세워야 할지 막막하다는 당신에게<br>
+                    일부러 자식들에게 치매에 관한 농담을 하는 까닭<br>
+                    사랑하는 사람들에게 무엇을 남기고 떠날 것인가<br>
+                    내 삶을 조금이라도 의미 있게 만드는 방법<br>
+                    ▶즐거운 인생을 위한 tip-스스로를 못났다고 생각하는 ‘잘난 사람’에게
+                    <br><br>
+                    chapter 5. 인생의 새로운 출발점에 서 있는 그대에게
+                    <br><br>
+                    인생의 황금기는 바로 지금이다<br>
+                    ▶즐거운 인생을 위한 tip-늘어나는 생일 초가 끔찍하기만 한 사람들에게<br>
+                    어떤 일이든 다시 시작하고 싶다면<br>
+                    인생을 안다고 자만하지 마라<br>
+                    ▶즐거운 인생을 위한 tip-인생이 재미없고 따분하다고 말하는 사람들에게<br>
+                    바쁘다는 핑계로 취미 생활을 더 이상 미루지 마라<br>
+                    남은 인생에서 내가 가장 잘하고 싶은 사람, 아내<br>
+                    ▶즐거운 인생을 위한 tip-부부 싸움엔 인내가 최선이라고 말하는 당신에게<br>
+                    미리 유언장을 써 두면 삶이 달라진다<br>
+                    ▶즐거운 인생을 위한 tip-선택의 갈림길에서 선뜻 결정을 내리지 못하는 사람들에게<br>
+                    내가 자동차와 휴대전화를 사지 않은 이유<br>
+                    25년 동안 의료 봉사를 하면서 알게 된 것들<br>
+                    쓸모없음을 아는 순간, 쓸모 있어진다<br>
+                    ▶즐거운 인생을 위한 tip-나이 들어 감투 욕심 부리는 당신에게<br>
+                    박완서 선생의 죽음에서 얻은 교훈<br>
+                    ▶즐거운 인생을 위한 tip-아까워서 아무것도 버리지 못하겠다는 사람들에게<br>
+                    <br>
+                    오늘을 귀하게 써야 하는 이유
+        
+                </div>
+            </div>
+        <div class="maininformation_Contents-button">
+            <div><h4>상세정보 더 보기</h4><h4 class="h4_1">상세정보 접기</h4></div>
+        </div>
+    
+        </div>
+        <!-- 리뷰 -->
+        <div id="review">
+            <div class="maininformation_button">
+                <div class="maininformation_button-box">
+                    <a href="#maininformation"><span>상세정보</span></a>
+                    <a href="#review" class="click"><span>리뷰 (117)</span></a>
+                </div>
+            </div>
+            <div class="review_box">
+                <div class="review_box-grade">
+                    <h3>구매만족도</h3>
+                    <h2>4.9</h2>
+                    <div>
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                    </div>
+                    <p>117건</p>
+                </div>
+                <div class="review_box-chart">
+                    <div class="chart_box">
+                        <p>5점</p>
+                        <div class="chart_ba"><span></span></div>
+                        <p>92%</p>
+                    </div>
+                    <div class="chart_box">
+                        <p>4점</p>
+                        <div class="chart_ba"><span></span></div>
+                        <p>3%</p>
+                    </div>
+                    <div class="chart_box">
+                        <p>3점</p>
+                        <div class="chart_ba"><span></span></div>
+                        <p>3%</p>
+                    </div>
+                    <div class="chart_box">
+                        <p>2점</p>
+                        <div class="chart_ba"><span></span></div>
+                        <p>1%</p>
+                    </div>
+                    <div class="chart_box">
+                        <p>1점</p>
+                        <div class="chart_ba"><span></span></div>
+                        <p>1%</p>
+                    </div>
+                </div>
+                <div class="review_box-text">
+                    <div><div><span>재미</span>재미있어요</div><div>100%</div></div>
+                    <div><div><span>추천여부</span>추천해요</div><div>100%</div></div>
+                    <div><div><span>배송</span>빨라요</div><div>69%</div></div>
+                </div>
+            </div>
+            
+            <div class="customer">
+                <div class="customer_photo"><img src="img/sub1/남자.png" alt=""></div>
+                <div class="customer_Contents">
+                    <div class="customer_totle">
+                        <h3>ssam**</h3>
+                    </div>
+                    <div class="customer_star">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                    </div>
+                    <div class="customer_text">
+                        <p>책의 제목과 조금씩 실려 있는 소개글만 보고 나에게도 맞을거 같고 재미없는
+                             삶에 재미있게 사는 방법은 무엇인지 구입, 받아서 책의 저자의 약력을 보고
+                             놀라면서 역시나 하는 실망감, 책을 읽다보니 위로 받기보다 내가 재미있게 
+                             사는 방법이 무엇인지 알기보다는 저자의 살아온 이야기나 현재 살아 가고 있
+                             는 이야기. 그런데 왠만한 사람들, 흔히 말하는 서민들의 삶과는 너무나 동떨
+                             어진 삶, 역시나 하고 이런 책들은 사보면 꼭 내 이야기가 아닌 남의 이야기,
+                             , 자랑거리들, 책을 읽고 재미있는 인생을 찾기보다는 어쩔 수 없는 삶의 무게만 더
+                              자각하게 된 책.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="customer">
+                <div class="customer_photo"><img src="img/sub1/남자.png" alt=""></div>
+                <div class="customer_Contents">
+                    <div class="customer_totle">
+                        <h3>ssam**</h3>
+                    </div>
+                    <div class="customer_star">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                    </div>
+                    <div class="customer_text">
+                        <p>책의 제목과 조금씩 실려 있는 소개글만 보고 나에게도 맞을거 같고 재미없는
+                             삶에 재미있게 사는 방법은 무엇인지 구입, 받아서 책의 저자의 약력을 보고
+                             놀라면서 역시나 하는 실망감, 책을 읽다보니 위로 받기보다 내가 재미있게 
+                             사는 방법이 무엇인지 알기보다는 저자의 살아온 이야기나 현재 살아 가고 있
+                             는 이야기. 그런데 왠만한 사람들, 흔히 말하는 서민들의 삶과는 너무나 동떨
+                             어진 삶, 역시나 하고 이런 책들은 사보면 꼭 내 이야기가 아닌 남의 이야기,
+                             , 자랑거리들, 책을 읽고 재미있는 인생을 찾기보다는 어쩔 수 없는 삶의 무게만 더
+                              자각하게 된 책.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="customer">
+                <div class="customer_photo"><img src="img/sub1/남자.png" alt=""></div>
+                <div class="customer_Contents">
+                    <div class="customer_totle">
+                        <h3>ssam**</h3>
+                    </div>
+                    <div class="customer_star">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                    </div>
+                    <div class="customer_text">
+                        <p>책의 제목과 조금씩 실려 있는 소개글만 보고 나에게도 맞을거 같고 재미없는
+                             삶에 재미있게 사는 방법은 무엇인지 구입, 받아서 책의 저자의 약력을 보고
+                             놀라면서 역시나 하는 실망감, 책을 읽다보니 위로 받기보다 내가 재미있게 
+                             사는 방법이 무엇인지 알기보다는 저자의 살아온 이야기나 현재 살아 가고 있
+                             는 이야기. 그런데 왠만한 사람들, 흔히 말하는 서민들의 삶과는 너무나 동떨
+                             어진 삶, 역시나 하고 이런 책들은 사보면 꼭 내 이야기가 아닌 남의 이야기,
+                             , 자랑거리들, 책을 읽고 재미있는 인생을 찾기보다는 어쩔 수 없는 삶의 무게만 더
+                              자각하게 된 책.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="customer">
+                <div class="customer_photo"><img src="img/sub1/남자.png" alt=""></div>
+                <div class="customer_Contents">
+                    <div class="customer_totle">
+                        <h3>ssam**</h3>
+                    </div>
+                    <div class="customer_star">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                    </div>
+                    <div class="customer_text">
+                        <p>책의 제목과 조금씩 실려 있는 소개글만 보고 나에게도 맞을거 같고 재미없는
+                             삶에 재미있게 사는 방법은 무엇인지 구입, 받아서 책의 저자의 약력을 보고
+                             놀라면서 역시나 하는 실망감, 책을 읽다보니 위로 받기보다 내가 재미있게 
+                             사는 방법이 무엇인지 알기보다는 저자의 살아온 이야기나 현재 살아 가고 있
+                             는 이야기. 그런데 왠만한 사람들, 흔히 말하는 서민들의 삶과는 너무나 동떨
+                             어진 삶, 역시나 하고 이런 책들은 사보면 꼭 내 이야기가 아닌 남의 이야기,
+                             , 자랑거리들, 책을 읽고 재미있는 인생을 찾기보다는 어쩔 수 없는 삶의 무게만 더
+                              자각하게 된 책.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="customer">
+                <div class="customer_photo"><img src="img/sub1/남자.png" alt=""></div>
+                <div class="customer_Contents">
+                    <div class="customer_totle">
+                        <h3>ssam**</h3>
+                    </div>
+                    <div class="customer_star">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                        <img src="img/sub1/별.png" alt="">
+                    </div>
+                    <div class="customer_text">
+                        <p>책의 제목과 조금씩 실려 있는 소개글만 보고 나에게도 맞을거 같고 재미없는
+                             삶에 재미있게 사는 방법은 무엇인지 구입, 받아서 책의 저자의 약력을 보고
+                             놀라면서 역시나 하는 실망감, 책을 읽다보니 위로 받기보다 내가 재미있게 
+                             사는 방법이 무엇인지 알기보다는 저자의 살아온 이야기나 현재 살아 가고 있
+                             는 이야기. 그런데 왠만한 사람들, 흔히 말하는 서민들의 삶과는 너무나 동떨
+                             어진 삶, 역시나 하고 이런 책들은 사보면 꼭 내 이야기가 아닌 남의 이야기,
+                             , 자랑거리들, 책을 읽고 재미있는 인생을 찾기보다는 어쩔 수 없는 삶의 무게만 더
+                              자각하게 된 책.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 관련제품 -->
+        <div id="Related_products">
+            <div class="Related_products_button">
+                <div class="Related_products_button-box">
+                    <span class="click">관련제품</span>
+                </div>
+            </div>
+            <div class="Related_products-ul">
+                <ul>
+                    <li class="Related_products-box"></li>
+                    <li class="Related_products-box"></li>
+                    <li class="Related_products-box"></li>
+                    <li class="Related_products-box"></li>
+                    <li class="Related_products-box"></li>
+                </ul>
+                <div class="Related_products-ul-button">
+                    <button class="click"></button>
+                    <button></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+  
+    <footer>
+        <div class="footer_main">
+            <div class="information">
+                <a href="index.html">
+                    <img src="img/common/로고.png" alt="logo">
+                </a>
+                
+                <p><strong><span>(주)</span>교보문구</strong> : 서울시 종로구 종로 1</p>
+                <p><strong>사업자등록번호</strong> : 102-81-11670</p>
+                <p><strong>대표전화</strong> : 1544-1900 (발신자 부담전화)</p>
+                <p><strong>팩스</strong> : 0502-987-5711 (지역번호 공통)</p>
+            </div>
+    
+            <div class="footer_nav">
+                <ul>
+                    <li>회원혜택</li>
+                    <li><a href="#">Prestige Lounge</a></li>
+                    <li><a href="#">신규회원 혜택</a></li>
+                    <li><a href="#">등급별 혜택</a></li>
+                    <li><a href="#">출석체크</a></li>
+                    <li><a href="#">참좋은 교보문고</a></li>
+                </ul>
+                <ul>
+                    <li>빠른 서비스</li>
+                    <li><a href="#">북클럽카드 등록</a></li>
+                    <li><a href="#">영수증 후 적립</a></li>
+                    <li><a href="#">교보캐시 조회.충전</a></li>
+                    <li><a href="#">기프트카드 조회.충전</a></li>
+                    <li><a href="#">미이용회원 조회.복원</a></li>
+                </ul>
+            </div>
+            <div class="News">
+                <p>뉴스레터 검색</p>
+                <input type="text" placeholder="검색해보세요...">
+                <button>검색</button>
+                <p>교보문고 소식</p>
+                <div class="sns">
+                    <a href="#"><img src="img/common/sns1.png" alt=""></a>
+                    <a href="#"><img src="img/common/sns2.png" alt=""></a>
+                    <a href="#"><img src="img/common/sns3.png" alt=""></a>
+                    <a href="#"><img src="img/common/sns4.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer_sub">
+            <div class="footer_sub_box">
+                <p>고객님은 안전거래를 위해 현금 등으로 결제시 저희 쇼핑몰에서 가입한 LG유플러스의 구매안전서비스를 이용하실 수 있습니다.</p>
+                <p>COPYRIGHT(C) KYOBO BOOK CENTRE ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>
